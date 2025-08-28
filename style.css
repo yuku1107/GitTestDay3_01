@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500;700&family=Mochiy+Pop+One&display=swap');
+
+:root {
+    --mario-red: #ff3333;
+    --luigi-green: #4caf50;
+    --peach-pink: #ff69b4;
+    --yoshi-green: #70c43e;
+    --star-yellow: #ffc107;
+    --coin-gold: #ffd700;
+    --sky-blue: #87ceeb;
+    --cloud-white: #f0f8ff;
+    --text-dark: #2c3e50;
+    --text-light: #fff;
+    --shadow-pop: 5px 5px 0px rgba(0, 0, 0, 0.2);
+    --shadow-light: 3px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Shantell Sans', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--sky-blue);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: var(--cloud-white);
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-family: 'Mochiy Pop One', cursive;
+    font-size: 2.5rem;
+    color: var(--mario-red);
+    letter-spacing: 2px;
+    text-shadow: var(--shadow-pop);
+}
+
+.logo span {
+    color: var(--luigi-green);
+}
+
+nav a {
+    font-family: 'Shantell Sans', sans-serif;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+nav a:hover {
+    color: var(--text-light);
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--peach-pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 20px;
+    z-index: -1;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav a:hover::before {
+    transform: scaleX(1);
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--sky-blue);
+    padding: 80px 20px;
+    box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 8px solid var(--mario-red);
+}
+
+.hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    background-color: var(--cloud-white);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: cloudMove 20s linear infinite;
+}
+
+.hero::before {
+    width: 150px;
+    height: 80px;
+    top: 20%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.hero::after {
+    width: 100px;
+    height: 60px;
+    top: 50%;
+    right: -5%;
+    animation-delay: 10s;
+}
+
+@keyframes cloudMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(1200px); }
+}
+
+.hero h1 {
+    font-family: 'Mochiy Pop One', cursive;
+    font-size: 3.5rem;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    text-shadow: var(--shadow-pop);
+    animation: bounceIn 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* Sections */
+section {
+    padding: 60px 0;
+    background-color: var(--cloud-white);
+}
+
+.section-heading {
+    font-family: 'Mochiy Pop One', cursive;
+    font-size: 2.5rem;
+    color: var(--mario-red);
+    margin-bottom: 40px;
+    text-shadow: var(--shadow-pop);
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.game-card {
+    background-color: var(--yoshi-green);
+    color: var(--text-light);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: var(--shadow-pop);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 4px solid var(--text-dark);
+    transform: scale(1);
+    animation: popUp 0.5s ease-out forwards;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.game-card::before {
+    content: '⭐';
+    font-size: 4rem;
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    opacity: 0.5;
+    animation: spin 3s linear infinite;
+}
+
+.game-card:nth-child(2)::before { content: '🍄'; animation-delay: 0.5s; }
+.game-card:nth-child(3)::before { content: '🌸'; animation-delay: 1s; }
+.game-card:nth-child(4)::before { content: '👑'; animation-delay: 1.5s; }
+
+@keyframes popUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.game-card h3 {
+    font-family: 'Mochiy Pop One', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-light);
+    text-shadow: var(--shadow-light);
+}
+
+.game-card p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.cta {
+    background-color: var(--peach-pink);
+    padding: 60px 20px;
+    margin-top: 60px;
+    border-top: 8px solid var(--luigi-green);
+    border-bottom: 8px solid var(--luigi-green);
+}
+
+.cta h2 {
+    font-family: 'Mochiy Pop One', cursive;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    text-shadow: var(--shadow-pop);
+}
+
+.cta .btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--mario-red);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow-pop);
+    border: 3px solid var(--text-dark);
+    transform: scale(1);
+}
+
+.cta .btn:hover {
+    background-color: var(--star-yellow);
+    color: var(--text-dark);
+    transform: scale(1.1);
+}
+
+footer {
+    padding: 30px 0;
+    background-color: var(--luigi-green);
+    color: var(--text-light);
+    text-shadow: var(--shadow-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 2rem;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+    }
+}
